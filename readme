@@ -1,3 +1,4 @@
 repositorio: https://github.com/Maurob01/Proyecto-planeador-de-viajes 
-R11:
-R12:
+R1: Solo utiliza un ciclo for x in lista y comparaciones de cadenas
+R2: Barrido lineal de la lista verificando prefijos con el método de cadena .startswith() y acumulando en una nueva lista hasta llegar a k elementos.
+R3:
