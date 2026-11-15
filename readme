@@ -1,5 +1,5 @@
 repositorio: https://github.com/Maurob01/Proyecto-planeador-de-viajes 
-
+El proyecto app: https://proyecto-planeador-de-viajes-mb.netlify.app
 # R11: Rendimiento
 
 R11 revisa cuánto tiempo tarda cada operación cuando la red crece. En este proyecto se deben medir R1, R2 y R3 con una red de tamaño `n` y después con una red de tamaño `2n`.
