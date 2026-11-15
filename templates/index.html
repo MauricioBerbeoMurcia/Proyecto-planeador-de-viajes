@@ -25,22 +25,23 @@
       </div>
     </div>
     <div class="self-stretch flex justify-start items-start gap-8 overflow-hidden">
-      <div class="self-stretch relative inline-flex flex-col justify-center items-start overflow-hidden">
-        <div class="justify-start text-red-600 text-sm font-bold font-['Inter']">Buscador</div>
-        <div class="w-16 h-[3px] left-0 top-[85px] absolute bg-red-600 rounded-xs"></div>
-      </div>
+      <button id="nav-buscador" type="button" aria-current="page" class="self-stretch relative inline-flex flex-col justify-center items-start bg-transparent border-0 p-0">
+        <span id="nav-buscador-text" class="justify-start text-red-600 text-sm font-bold font-['Inter']">Buscador</span>
+        <span id="nav-buscador-indicator" class="w-16 h-[3px] left-0 top-[77px] absolute bg-red-600 rounded-xs"></span>
+      </button>
       <div class="self-stretch inline-flex flex-col justify-center items-start overflow-hidden">
         <div class="justify-start text-gray-500 text-sm font-medium font-['Inter']">Planeador de Viajes</div>
       </div>
       <div class="self-stretch inline-flex flex-col justify-center items-start overflow-hidden">
         <div class="justify-start text-gray-500 text-sm font-medium font-['Inter']">Panel de Operador</div>
       </div>
-      <div class="self-stretch inline-flex flex-col justify-center items-start overflow-hidden">
-        <div class="justify-start text-gray-500 text-sm font-medium font-['Inter']">Rendimiento</div>
-      </div>
+      <button id="nav-rendimiento" type="button" aria-current="false" class="self-stretch relative inline-flex flex-col justify-center items-start bg-transparent border-0 p-0">
+        <span id="nav-rendimiento-text" class="justify-start text-gray-500 text-sm font-medium font-['Inter']">Rendimiento</span>
+        <span id="nav-rendimiento-indicator" class="hidden w-24 h-[3px] left-0 top-[77px] absolute bg-red-600 rounded-xs"></span>
+      </button>
     </div>
   </div>
-  <div class="self-stretch px-20 py-10 flex flex-col justify-start items-start gap-8 overflow-hidden">
+  <div id="vista-buscador" class="self-stretch px-20 py-10 flex flex-col justify-start items-start gap-8 overflow-hidden">
     <div class="self-stretch flex flex-col justify-start items-start gap-7">
       <div class="self-stretch flex flex-col justify-start items-start gap-2.5 overflow-hidden">
         <div class="size- inline-flex justify-start items-center gap-2 overflow-hidden">
@@ -386,6 +387,105 @@
       </div>
     </div>
   </div>
+  <section id="vista-rendimiento" class="hidden self-stretch px-20 py-10 bg-slate-100 flex-col gap-6">
+    <div class="flex flex-col lg:flex-row justify-between items-start lg:items-center bg-white p-6 rounded-xl border border-zinc-200 gap-5">
+      <div>
+        <div class="text-gray-500 text-xs font-medium mb-1">TransMilenio / Analisis del sistema / Rendimiento</div>
+        <h1 class="text-zinc-800 text-3xl font-bold font-['Inter']">Panel de Rendimiento Empirico (R11)</h1>
+        <p class="text-gray-500 text-sm mt-2">Compara el costo de R1, R2 y R3 al duplicar el tamano de la red.</p>
+      </div>
+      <button id="run-benchmark" type="button" class="bg-red-600 hover:bg-red-700 text-white text-sm font-semibold px-5 py-3 rounded-lg shadow-sm">Ejecutar benchmark (n vs 2n)</button>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <article class="bg-white p-5 rounded-xl border border-zinc-200 flex flex-col justify-between gap-4">
+        <div class="flex justify-between items-center">
+          <span class="bg-red-50 text-red-600 text-xs font-bold px-2.5 py-1 rounded">R1</span>
+          <span class="bg-gray-100 text-zinc-800 text-xs font-semibold px-2.5 py-1 rounded">O(log n)</span>
+        </div>
+        <div>
+          <p class="text-zinc-800 text-sm font-semibold">Busqueda exacta</p>
+          <p data-benchmark-ratio="r1" class="text-3xl font-bold text-zinc-900 mt-1">--</p>
+          <p data-benchmark-growth="r1" class="text-gray-500 text-xs mt-1">Pendiente de ejecutar</p>
+        </div>
+        <p data-benchmark-times="r1" class="text-gray-400 text-xs pt-3 border-t border-zinc-100">n: -- ms | 2n: -- ms</p>
+      </article>
+      <article class="bg-white p-5 rounded-xl border border-zinc-200 flex flex-col justify-between gap-4">
+        <div class="flex justify-between items-center">
+          <span class="bg-red-50 text-red-600 text-xs font-bold px-2.5 py-1 rounded">R2</span>
+          <span class="bg-gray-100 text-zinc-800 text-xs font-semibold px-2.5 py-1 rounded">O(n)</span>
+        </div>
+        <div>
+          <p class="text-zinc-800 text-sm font-semibold">Autocompletar</p>
+          <p data-benchmark-ratio="r2" class="text-3xl font-bold text-zinc-900 mt-1">--</p>
+          <p data-benchmark-growth="r2" class="text-gray-500 text-xs mt-1">Pendiente de ejecutar</p>
+        </div>
+        <p data-benchmark-times="r2" class="text-gray-400 text-xs pt-3 border-t border-zinc-100">n: -- ms | 2n: -- ms</p>
+      </article>
+      <article class="bg-white p-5 rounded-xl border border-zinc-200 flex flex-col justify-between gap-4">
+        <div class="flex justify-between items-center">
+          <span class="bg-red-50 text-red-600 text-xs font-bold px-2.5 py-1 rounded">R3</span>
+          <span class="bg-gray-100 text-zinc-800 text-xs font-semibold px-2.5 py-1 rounded">O(log n + r)</span>
+        </div>
+        <div>
+          <p class="text-zinc-800 text-sm font-semibold">Rango</p>
+          <p data-benchmark-ratio="r3" class="text-3xl font-bold text-zinc-900 mt-1">--</p>
+          <p data-benchmark-growth="r3" class="text-gray-500 text-xs mt-1">Pendiente de ejecutar</p>
+        </div>
+        <p data-benchmark-times="r3" class="text-gray-400 text-xs pt-3 border-t border-zinc-100">n: -- ms | 2n: -- ms</p>
+      </article>
+    </div>
+
+    <div class="grid grid-cols-1 xl:grid-cols-2 gap-6">
+      <section class="bg-white p-6 rounded-xl border border-zinc-200">
+        <h2 class="text-zinc-800 text-lg font-bold font-['Inter']">Tiempo por operacion</h2>
+        <p class="text-gray-500 text-xs mt-1">Promedio por llamada en milisegundos.</p>
+        <div class="flex items-center gap-5 mt-5 text-xs text-gray-500">
+          <span class="inline-flex items-center gap-2"><span class="size-2.5 rounded-sm bg-yellow-400"></span>n: 147 estaciones</span>
+          <span class="inline-flex items-center gap-2"><span class="size-2.5 rounded-sm bg-red-600"></span>2n: 294 estaciones</span>
+        </div>
+        <div class="h-56 mt-5 pt-4 border-b border-l border-zinc-200 flex items-end justify-around gap-6" aria-label="Grafica de tiempos del benchmark">
+          <div class="h-full flex-1 flex items-end justify-center gap-2">
+            <div class="flex flex-col items-center justify-end h-full"><span data-bar-label="r1-n" class="text-xs text-gray-500 mb-1">--</span><div data-bar="r1-n" class="w-10 bg-yellow-400 rounded-t-sm" style="height: 8%"></div></div>
+            <div class="flex flex-col items-center justify-end h-full"><span data-bar-label="r1-2n" class="text-xs text-gray-500 mb-1">--</span><div data-bar="r1-2n" class="w-10 bg-red-600 rounded-t-sm" style="height: 8%"></div></div>
+          </div>
+          <div class="h-full flex-1 flex items-end justify-center gap-2">
+            <div class="flex flex-col items-center justify-end h-full"><span data-bar-label="r2-n" class="text-xs text-gray-500 mb-1">--</span><div data-bar="r2-n" class="w-10 bg-yellow-400 rounded-t-sm" style="height: 8%"></div></div>
+            <div class="flex flex-col items-center justify-end h-full"><span data-bar-label="r2-2n" class="text-xs text-gray-500 mb-1">--</span><div data-bar="r2-2n" class="w-10 bg-red-600 rounded-t-sm" style="height: 8%"></div></div>
+          </div>
+          <div class="h-full flex-1 flex items-end justify-center gap-2">
+            <div class="flex flex-col items-center justify-end h-full"><span data-bar-label="r3-n" class="text-xs text-gray-500 mb-1">--</span><div data-bar="r3-n" class="w-10 bg-yellow-400 rounded-t-sm" style="height: 8%"></div></div>
+            <div class="flex flex-col items-center justify-end h-full"><span data-bar-label="r3-2n" class="text-xs text-gray-500 mb-1">--</span><div data-bar="r3-2n" class="w-10 bg-red-600 rounded-t-sm" style="height: 8%"></div></div>
+          </div>
+        </div>
+        <div class="grid grid-cols-3 text-center text-xs font-semibold text-zinc-700 mt-3"><span>R1<br><span class="font-normal text-gray-500">Busqueda</span></span><span>R2<br><span class="font-normal text-gray-500">Autocompletar</span></span><span>R3<br><span class="font-normal text-gray-500">Rango</span></span></div>
+      </section>
+
+      <section class="bg-white p-6 rounded-xl border border-zinc-200">
+        <h2 class="text-zinc-800 text-lg font-bold font-['Inter']">Resultados del benchmark</h2>
+        <p class="text-gray-500 text-xs mt-1">Factor de crecimiento = tiempo 2n / tiempo n.</p>
+        <div class="overflow-x-auto mt-5">
+          <table class="w-full text-left text-xs">
+            <thead class="bg-slate-50 text-gray-500"><tr><th class="px-3 py-3 font-semibold">Req.</th><th class="px-3 py-3 font-semibold">Complejidad</th><th class="px-3 py-3 font-semibold">n (ms)</th><th class="px-3 py-3 font-semibold">2n (ms)</th><th class="px-3 py-3 font-semibold">Factor</th></tr></thead>
+            <tbody class="divide-y divide-zinc-100 text-zinc-700">
+              <tr><td class="px-3 py-3 font-bold text-red-600">R1</td><td class="px-3 py-3">O(log n)</td><td data-table="r1-n" class="px-3 py-3">--</td><td data-table="r1-2n" class="px-3 py-3">--</td><td data-table="r1-ratio" class="px-3 py-3">--</td></tr>
+              <tr><td class="px-3 py-3 font-bold text-red-600">R2</td><td class="px-3 py-3">O(n)</td><td data-table="r2-n" class="px-3 py-3">--</td><td data-table="r2-2n" class="px-3 py-3">--</td><td data-table="r2-ratio" class="px-3 py-3">--</td></tr>
+              <tr><td class="px-3 py-3 font-bold text-red-600">R3</td><td class="px-3 py-3">O(log n + r)</td><td data-table="r3-n" class="px-3 py-3">--</td><td data-table="r3-2n" class="px-3 py-3">--</td><td data-table="r3-ratio" class="px-3 py-3">--</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="mt-5 p-4 bg-slate-50 border border-zinc-200 rounded-lg">
+          <h3 class="text-zinc-800 text-sm font-semibold">Como leer estos datos</h3>
+          <p id="benchmark-explanation" class="text-gray-500 text-xs leading-5 mt-2">Pulsa el boton para medir las versiones en JavaScript de los algoritmos de R1, R2 y R3.</p>
+        </div>
+      </section>
+    </div>
+
+    <div class="bg-amber-50 border border-amber-200 px-5 py-4 rounded-lg text-amber-900 text-xs" role="note">
+      Esta vista mide una replica de los algoritmos en el navegador para visualizar el crecimiento. La medicion oficial de R11 debe ejecutarse tambien sobre el motor Python.
+      <span id="benchmark-status" class="font-semibold"></span>
+    </div>
+  </section>
   <div class="self-stretch h-20 px-20 bg-white border-t border-zinc-200 inline-flex justify-between items-center overflow-hidden">
     <div class="size- flex justify-start items-center gap-2 overflow-hidden">
       <div class="size-4 relative overflow-hidden">
@@ -951,6 +1051,157 @@
 
   renderPanel();
   renderCatalog();
+})();
+</script>
+
+<script>
+(() => {
+  const navBuscador = document.getElementById("nav-buscador");
+  const navRendimiento = document.getElementById("nav-rendimiento");
+  const buscadorView = document.getElementById("vista-buscador");
+  const rendimientoView = document.getElementById("vista-rendimiento");
+  const runButton = document.getElementById("run-benchmark");
+  const status = document.getElementById("benchmark-status");
+  const explanation = document.getElementById("benchmark-explanation");
+
+  if (!navBuscador || !navRendimiento || !buscadorView || !rendimientoView || !runButton) return;
+
+  const setActiveNav = (active) => {
+    const buscadorActive = active === "buscador";
+    document.getElementById("nav-buscador-text").className = buscadorActive
+      ? "justify-start text-red-600 text-sm font-bold font-['Inter']"
+      : "justify-start text-gray-500 text-sm font-medium font-['Inter']";
+    document.getElementById("nav-rendimiento-text").className = buscadorActive
+      ? "justify-start text-gray-500 text-sm font-medium font-['Inter']"
+      : "justify-start text-red-600 text-sm font-bold font-['Inter']";
+    document.getElementById("nav-buscador-indicator").classList.toggle("hidden", !buscadorActive);
+    document.getElementById("nav-rendimiento-indicator").classList.toggle("hidden", buscadorActive);
+    navBuscador.setAttribute("aria-current", buscadorActive ? "page" : "false");
+    navRendimiento.setAttribute("aria-current", buscadorActive ? "false" : "page");
+  };
+
+  const showView = (view) => {
+    const showRendimiento = view === "rendimiento";
+    buscadorView.classList.toggle("hidden", showRendimiento);
+    rendimientoView.classList.toggle("hidden", !showRendimiento);
+    rendimientoView.classList.toggle("flex", showRendimiento);
+    setActiveNav(showRendimiento ? "rendimiento" : "buscador");
+    document.title = showRendimiento ? "TransMilenio - Rendimiento R11" : "TransMilenio - Buscador";
+  };
+
+  navBuscador.addEventListener("click", () => showView("buscador"));
+  navRendimiento.addEventListener("click", () => showView("rendimiento"));
+
+  const rawStations = typeof estacionesData === "undefined" ? [] : estacionesData;
+  const stationNames = Array.isArray(rawStations)
+    ? rawStations
+      .map((station) => String(station.nombre || "").trim().toLocaleUpperCase("es"))
+      .filter(Boolean)
+      .sort((a, b) => a.localeCompare(b, "es", { sensitivity: "base" }))
+    : [];
+
+  const exactSearch = (list, target) => {
+    let left = 0;
+    let right = list.length - 1;
+    while (left <= right) {
+      const middle = Math.floor((left + right) / 2);
+      if (list[middle] === target) return list[middle];
+      if (list[middle] < target) left = middle + 1;
+      else right = middle - 1;
+    }
+    return null;
+  };
+
+  const autocomplete = (list, prefix, limit) => {
+    const result = [];
+    for (const name of list) {
+      if (name.startsWith(prefix)) result.push(name);
+      if (result.length === limit) break;
+    }
+    return result;
+  };
+
+  const lowerBound = (list, value) => {
+    let left = 0;
+    let right = list.length;
+    while (left < right) {
+      const middle = Math.floor((left + right) / 2);
+      if (list[middle] < value) left = middle + 1;
+      else right = middle;
+    }
+    return left;
+  };
+
+  const upperBound = (list, value) => {
+    let left = 0;
+    let right = list.length;
+    while (left < right) {
+      const middle = Math.floor((left + right) / 2);
+      if (list[middle] <= value) left = middle + 1;
+      else right = middle;
+    }
+    return left;
+  };
+
+  const rangeSearch = (list, from, to) => list.slice(lowerBound(list, from), upperBound(list, to));
+
+  const measure = (operation) => {
+    const repetitions = 5000;
+    for (let index = 0; index < 100; index += 1) operation();
+    const start = performance.now();
+    for (let index = 0; index < repetitions; index += 1) operation();
+    return Math.max((performance.now() - start) / repetitions, 0.0001);
+  };
+
+  const formatTime = (value) => value < 0.01 ? value.toFixed(4) : value.toFixed(3);
+
+  const updateBenchmark = (results) => {
+    const highest = Math.max(...results.flatMap((result) => [result.timeN, result.time2N]));
+    results.forEach((result) => {
+      const ratio = result.time2N / result.timeN;
+      const growth = ratio < 1.3 ? "Crecimiento leve" : ratio <= 2.3 ? "Crecimiento cercano a lineal" : "Crecimiento superior a lineal";
+      document.querySelector(`[data-benchmark-ratio="${result.id}"]`).textContent = `${ratio.toFixed(2)}x`;
+      document.querySelector(`[data-benchmark-growth="${result.id}"]`).textContent = growth;
+      document.querySelector(`[data-benchmark-times="${result.id}"]`).textContent = `${formatTime(result.timeN)} ms -> ${formatTime(result.time2N)} ms al duplicar la red`;
+      document.querySelector(`[data-table="${result.id}-n"]`).textContent = formatTime(result.timeN);
+      document.querySelector(`[data-table="${result.id}-2n"]`).textContent = formatTime(result.time2N);
+      document.querySelector(`[data-table="${result.id}-ratio"]`).textContent = `${ratio.toFixed(2)}x`;
+
+      [[`${result.id}-n`, result.timeN], [`${result.id}-2n`, result.time2N]].forEach(([key, time]) => {
+        document.querySelector(`[data-bar="${key}"]`).style.height = `${Math.max(8, (time / highest) * 100)}%`;
+        document.querySelector(`[data-bar-label="${key}"]`).textContent = formatTime(time);
+      });
+    });
+  };
+
+  const executeBenchmark = () => {
+    if (!stationNames.length) {
+      status.textContent = " No se encontraron estaciones para medir.";
+      return;
+    }
+    runButton.disabled = true;
+    runButton.textContent = "Midiendo...";
+
+    window.requestAnimationFrame(() => {
+      const doubleNetwork = stationNames.concat(stationNames)
+        .sort((a, b) => a.localeCompare(b, "es", { sensitivity: "base" }));
+      const first = stationNames[0];
+      const last = stationNames.at(-1);
+      const target = stationNames[Math.floor(stationNames.length / 2)];
+      const tasks = [
+        { id: "r1", timeN: measure(() => exactSearch(stationNames, target)), time2N: measure(() => exactSearch(doubleNetwork, target)) },
+        { id: "r2", timeN: measure(() => autocomplete(stationNames, "CAL", stationNames.length)), time2N: measure(() => autocomplete(doubleNetwork, "CAL", doubleNetwork.length)) },
+        { id: "r3", timeN: measure(() => rangeSearch(stationNames, first, last)), time2N: measure(() => rangeSearch(doubleNetwork, first, last)) }
+      ];
+      updateBenchmark(tasks);
+      explanation.textContent = "R1 usa busqueda binaria. R2 recorre la lista con el prefijo CAL. R3 encuentra los limites con busqueda binaria y devuelve el rango completo, por eso al mostrar muchas estaciones su costo se acerca a lineal.";
+      status.textContent = ` Ultima medicion: n = ${stationNames.length}, 2n = ${doubleNetwork.length}.`;
+      runButton.disabled = false;
+      runButton.textContent = "Ejecutar benchmark (n vs 2n)";
+    });
+  };
+
+  runButton.addEventListener("click", executeBenchmark);
 })();
 </script>
 
